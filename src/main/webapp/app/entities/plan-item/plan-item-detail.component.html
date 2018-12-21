@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="planItem">
+            <h2><span jhiTranslate="prototypeApp.planItem.detail.title">Plan Item</span> {{planItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prototypeApp.planItem.itemType">Item Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'prototypeApp.PurchasedItemType.' + planItem.itemType}}">{{planItem.itemType}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.rowNumber">Row Number</span></dt>
+                <dd>
+                    <span>{{planItem.rowNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.itemName">Item Name</span></dt>
+                <dd>
+                    <span>{{planItem.itemName}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.purchaseMethod">Purchase Method</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'prototypeApp.PurchaseMethod.' + planItem.purchaseMethod}}">{{planItem.purchaseMethod}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.quantityOrVolume">Quantity Or Volume</span></dt>
+                <dd>
+                    <span>{{planItem.quantityOrVolume}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.unitPrice">Unit Price</span></dt>
+                <dd>
+                    <span>{{planItem.unitPrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.priceWithoutVAT">Price Without VAT</span></dt>
+                <dd>
+                    <span>{{planItem.priceWithoutVAT}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.deliveryAddress">Delivery Address</span></dt>
+                <dd>
+                    <span>{{planItem.deliveryAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.deliveryMonth">Delivery Month</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'prototypeApp.DeliveryMonth.' + planItem.deliveryMonth}}">{{planItem.deliveryMonth}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.planItem.purchasePlan">Purchase Plan</span></dt>
+                <dd>
+                    <div *ngIf="planItem.purchasePlan">
+                        <a [routerLink]="['/purchase-plan', planItem.purchasePlan?.id, 'view']">{{planItem.purchasePlan?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plan-item', planItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

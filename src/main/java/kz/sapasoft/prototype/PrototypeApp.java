@@ -5,6 +5,7 @@ import kz.sapasoft.prototype.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
 
+import kz.sapasoft.prototype.config.FileStorageProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
-@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class, FileStorageProperties.class})
 public class PrototypeApp {
 
     private static final Logger log = LoggerFactory.getLogger(PrototypeApp.class);

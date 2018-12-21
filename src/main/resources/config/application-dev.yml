@@ -37,8 +37,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/prototype
-        username: prototype
-        password:
+        username: developer
+        password: 123456
         hikari:
             auto-commit: false
     jpa:
@@ -63,6 +63,14 @@ spring:
         cache-duration: PT1S # 1 second, see the ISO 8601 standard
     thymeleaf:
         cache: false
+    servlet:
+        multipart:
+          enabled: true
+          file-size-threshold: 2KB
+          max-file-size: 200MB
+          max-request-size: 215MB
+file:
+    upload-dir: /home/khamit/uploads
 
 server:
     port: 8080

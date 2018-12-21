@@ -1,0 +1,138 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-plan-item-heading" jhiTranslate="prototypeApp.planItem.home.createOrEditLabel">Create or edit a Plan Item</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!planItem.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="planItem.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.itemType" for="field_itemType">Item Type</label>
+                    <select class="form-control" name="itemType" [(ngModel)]="planItem.itemType" id="field_itemType"  required>
+                        <option value="PRODUCT">{{'prototypeApp.PurchasedItemType.PRODUCT' | translate}}</option>
+                        <option value="WORK">{{'prototypeApp.PurchasedItemType.WORK' | translate}}</option>
+                        <option value="SERVICE">{{'prototypeApp.PurchasedItemType.SERVICE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.itemType?.dirty && editForm.controls.itemType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.itemType?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.rowNumber" for="field_rowNumber">Row Number</label>
+                    <input type="number" class="form-control" name="rowNumber" id="field_rowNumber"
+                        [(ngModel)]="planItem.rowNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.itemName" for="field_itemName">Item Name</label>
+                    <input type="text" class="form-control" name="itemName" id="field_itemName"
+                        [(ngModel)]="planItem.itemName" required/>
+                    <div [hidden]="!(editForm.controls.itemName?.dirty && editForm.controls.itemName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.itemName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.purchaseMethod" for="field_purchaseMethod">Purchase Method</label>
+                    <select class="form-control" name="purchaseMethod" [(ngModel)]="planItem.purchaseMethod" id="field_purchaseMethod"  required>
+                        <option value="OPEN_TENDER">{{'prototypeApp.PurchaseMethod.OPEN_TENDER' | translate}}</option>
+                        <option value="OPEN_TENDER_FOR_FALL">{{'prototypeApp.PurchaseMethod.OPEN_TENDER_FOR_FALL' | translate}}</option>
+                        <option value="REQUEST_FOR_PRICE_OFFERS">{{'prototypeApp.PurchaseMethod.REQUEST_FOR_PRICE_OFFERS' | translate}}</option>
+                        <option value="REQUEST_FOR_PRICE_OFFERS_FOR_FALL">{{'prototypeApp.PurchaseMethod.REQUEST_FOR_PRICE_OFFERS_FOR_FALL' | translate}}</option>
+                        <option value="FROM_ONE_SOURCE">{{'prototypeApp.PurchaseMethod.FROM_ONE_SOURCE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.purchaseMethod?.dirty && editForm.controls.purchaseMethod?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.purchaseMethod?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.quantityOrVolume" for="field_quantityOrVolume">Quantity Or Volume</label>
+                    <input type="number" class="form-control" name="quantityOrVolume" id="field_quantityOrVolume" (ngModelChange) = "calculateTotalPrice()"
+                        [(ngModel)]="planItem.quantityOrVolume" required/>
+                    <div [hidden]="!(editForm.controls.quantityOrVolume?.dirty && editForm.controls.quantityOrVolume?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.quantityOrVolume?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.quantityOrVolume?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.unitPrice" for="field_unitPrice">Unit Price</label>
+                    <input type="number" class="form-control" name="unitPrice" id="field_unitPrice" (ngModelChange) = "calculateTotalPrice()"
+                        [(ngModel)]="planItem.unitPrice" required/>
+                    <div [hidden]="!(editForm.controls.unitPrice?.dirty && editForm.controls.unitPrice?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.unitPrice?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.unitPrice?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.priceWithoutVAT" for="field_priceWithoutVAT">Price Without VAT</label>
+                    <input type="number" class="form-control" name="priceWithoutVAT" id="field_priceWithoutVAT"
+                        [(ngModel)]="planItem.priceWithoutVAT" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.deliveryAddress" for="field_deliveryAddress">Delivery Address</label>
+                    <input type="text" class="form-control" name="deliveryAddress" id="field_deliveryAddress"
+                        [(ngModel)]="planItem.deliveryAddress" required/>
+                    <div [hidden]="!(editForm.controls.deliveryAddress?.dirty && editForm.controls.deliveryAddress?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.deliveryAddress?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.planItem.deliveryMonth" for="field_deliveryMonth">Delivery Month</label>
+                    <select class="form-control" name="deliveryMonth" [(ngModel)]="planItem.deliveryMonth" id="field_deliveryMonth"  required>
+                        <option value="JANUARY">{{'prototypeApp.DeliveryMonth.JANUARY' | translate}}</option>
+                        <option value="FEBRUARY">{{'prototypeApp.DeliveryMonth.FEBRUARY' | translate}}</option>
+                        <option value="MARCH">{{'prototypeApp.DeliveryMonth.MARCH' | translate}}</option>
+                        <option value="APRIL">{{'prototypeApp.DeliveryMonth.APRIL' | translate}}</option>
+                        <option value="MAY">{{'prototypeApp.DeliveryMonth.MAY' | translate}}</option>
+                        <option value="JUNE">{{'prototypeApp.DeliveryMonth.JUNE' | translate}}</option>
+                        <option value="JULY">{{'prototypeApp.DeliveryMonth.JULY' | translate}}</option>
+                        <option value="AUGUST">{{'prototypeApp.DeliveryMonth.AUGUST' | translate}}</option>
+                        <option value="SEPTEMBER">{{'prototypeApp.DeliveryMonth.SEPTEMBER' | translate}}</option>
+                        <option value="OCTOBER">{{'prototypeApp.DeliveryMonth.OCTOBER' | translate}}</option>
+                        <option value="NOVEMBER">{{'prototypeApp.DeliveryMonth.NOVEMBER' | translate}}</option>
+                        <option value="DECEMBER">{{'prototypeApp.DeliveryMonth.DECEMBER' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.deliveryMonth?.dirty && editForm.controls.deliveryMonth?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.deliveryMonth?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

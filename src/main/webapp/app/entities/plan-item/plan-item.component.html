@@ -1,0 +1,151 @@
+<div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div *ngIf="purchasePlan">
+                <h2><span jhiTranslate="prototypeApp.purchasePlan.detail.title">Purchase Plan</span> {{purchasePlan.id}}</h2>
+                <hr>
+                <dl class="row-md jh-entity-details">
+                    <dt><span jhiTranslate="prototypeApp.purchasePlan.fiscalYear">Fiscal Year</span></dt>
+                    <dd>
+                        <span>{{purchasePlan.fiscalYear}}</span>
+                    </dd>
+                    <dt><span jhiTranslate="prototypeApp.purchasePlan.planType">Plan Type</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{'prototypeApp.PlanType.' + purchasePlan.planType}}">{{purchasePlan.planType}}</span>
+                    </dd>
+                    <dt><span jhiTranslate="prototypeApp.purchasePlan.status">Status</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{'prototypeApp.PurchasePlanStatus.' + purchasePlan.status}}">{{purchasePlan.status}}</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="form-control-label" jhiTranslate="prototypeApp.planItem.purchaseMethod" for="field_purchaseMethod">Purchase Method</label>
+            <select class="form-control" name="purchaseMethod" [(ngModel)]="condition.purchaseMethod" (ngModelChange)="loadAll()" id="field_purchaseMethod">
+                <option [ngValue]="undefined">Все</option>
+                <option value="OPEN_TENDER">{{'prototypeApp.PurchaseMethod.OPEN_TENDER' | translate}}</option>
+                <option value="OPEN_TENDER_FOR_FALL">{{'prototypeApp.PurchaseMethod.OPEN_TENDER_FOR_FALL' | translate}}</option>
+                <option value="REQUEST_FOR_PRICE_OFFERS">{{'prototypeApp.PurchaseMethod.REQUEST_FOR_PRICE_OFFERS' | translate}}</option>
+                <option value="REQUEST_FOR_PRICE_OFFERS_FOR_FALL">{{'prototypeApp.PurchaseMethod.REQUEST_FOR_PRICE_OFFERS_FOR_FALL' | translate}}</option>
+                <option value="FROM_ONE_SOURCE">{{'prototypeApp.PurchaseMethod.FROM_ONE_SOURCE' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="form-control-label" jhiTranslate="prototypeApp.planItem.itemType" for="field_itemType">Item Type</label>
+            <select class="form-control" name="itemType" [(ngModel)]="condition.itemType" (ngModelChange)="loadAll()" id="field_itemType">
+                <option [ngValue]="undefined">Все</option>
+                <option value="PRODUCT">{{'prototypeApp.PurchasedItemType.PRODUCT' | translate}}</option>
+                <option value="WORK">{{'prototypeApp.PurchasedItemType.WORK' | translate}}</option>
+                <option value="SERVICE">{{'prototypeApp.PurchasedItemType.SERVICE' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="form-control-label" jhiTranslate="prototypeApp.planItem.deliveryMonth" for="field_deliveryMonth">Delivery Month</label>
+            <select class="form-control" name="deliveryMonth" [(ngModel)]="condition.deliveryMonth" (ngModelChange)="loadAll()" id="field_deliveryMonth">
+                <option [ngValue]="undefined">Все</option>
+                <option value="JANUARY">{{'prototypeApp.DeliveryMonth.JANUARY' | translate}}</option>
+                <option value="FEBRUARY">{{'prototypeApp.DeliveryMonth.FEBRUARY' | translate}}</option>
+                <option value="MARCH">{{'prototypeApp.DeliveryMonth.MARCH' | translate}}</option>
+                <option value="APRIL">{{'prototypeApp.DeliveryMonth.APRIL' | translate}}</option>
+                <option value="MAY">{{'prototypeApp.DeliveryMonth.MAY' | translate}}</option>
+                <option value="JUNE">{{'prototypeApp.DeliveryMonth.JUNE' | translate}}</option>
+                <option value="JULY">{{'prototypeApp.DeliveryMonth.JULY' | translate}}</option>
+                <option value="AUGUST">{{'prototypeApp.DeliveryMonth.AUGUST' | translate}}</option>
+                <option value="SEPTEMBER">{{'prototypeApp.DeliveryMonth.SEPTEMBER' | translate}}</option>
+                <option value="OCTOBER">{{'prototypeApp.DeliveryMonth.OCTOBER' | translate}}</option>
+                <option value="NOVEMBER">{{'prototypeApp.DeliveryMonth.NOVEMBER' | translate}}</option>
+                <option value="DECEMBER">{{'prototypeApp.DeliveryMonth.DECEMBER' | translate}}</option>
+            </select>
+        </div>
+    </div>
+    <h2 id="page-heading">
+        <span jhiTranslate="prototypeApp.planItem.home.title">Plan Items</span>
+        <button type="button" id="cancel-save" class="btn btn-secondary float-right"  (click)="previousState()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-plan-item"
+                [routerLink]="['/plan-item/new']" [queryParams]="{pid: purchasePlan.id}">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="prototypeApp.planItem.home.createLabel">
+            Create new Plan Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+
+    <div class="table-responsive" *ngIf="planItems">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.itemType">Item Type</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.rowNumber">Row Number</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.itemName">Item Name</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.purchaseMethod">Purchase Method</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.quantityOrVolume">Quantity Or Volume</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.unitPrice">Unit Price</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.priceWithoutVAT">Price Without VAT</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.deliveryAddress">Delivery Address</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.deliveryMonth">Delivery Month</span></th>
+            <th><span jhiTranslate="prototypeApp.planItem.purchasePlan">Purchase Plan</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let planItem of planItems ;trackBy: trackId">
+                <td><a [routerLink]="['/plan-item', planItem.id, 'view' ]">{{planItem.id}}</a></td>
+                <td jhiTranslate="{{'prototypeApp.PurchasedItemType.' + planItem.itemType}}">{{planItem.itemType}}</td>
+                <td>{{planItem.rowNumber}}</td>
+                <td>{{planItem.itemName}}</td>
+                <td jhiTranslate="{{'prototypeApp.PurchaseMethod.' + planItem.purchaseMethod}}">{{planItem.purchaseMethod}}</td>
+                <td>{{planItem.quantityOrVolume}}</td>
+                <td>{{planItem.unitPrice}}</td>
+                <td>{{planItem.priceWithoutVAT}}</td>
+                <td>{{planItem.deliveryAddress}}</td>
+                <td jhiTranslate="{{'prototypeApp.DeliveryMonth.' + planItem.deliveryMonth}}">{{planItem.deliveryMonth}}</td>
+                <td>
+                    <div *ngIf="planItem.purchasePlan">
+                        <a [routerLink]="['../purchase-plan', planItem.purchasePlan?.id, 'view' ]" >{{planItem.purchasePlan?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/plan-item', planItem.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/plan-item', planItem.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'plan-item/'+ planItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="planItems && planItems.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

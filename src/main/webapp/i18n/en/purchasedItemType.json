@@ -1,0 +1,10 @@
+{
+    "prototypeApp": {
+        "PurchasedItemType": {
+            "null": "",
+            "PRODUCT": "PRODUCT",
+            "WORK": "WORK",
+            "SERVICE": "SERVICE"
+        }
+    }
+}

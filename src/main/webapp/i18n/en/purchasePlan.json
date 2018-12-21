@@ -1,0 +1,24 @@
+{
+    "prototypeApp": {
+        "purchasePlan": {
+            "home": {
+                "title": "Purchase Plans",
+                "createLabel": "Create a new Purchase Plan",
+                "createOrEditLabel": "Create or edit a Purchase Plan"
+            },
+            "created": "A new Purchase Plan is created with identifier {{ param }}",
+            "updated": "A Purchase Plan is updated with identifier {{ param }}",
+            "deleted": "A Purchase Plan is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Purchase Plan {{ id }}?"
+            },
+            "detail": {
+                "title": "Purchase Plan"
+            },
+            "fiscalYear": "Fiscal Year",
+            "planType": "Plan Type",
+            "status": "Status",
+            "planItems": "Plan Items"
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-purchase-plan-heading" jhiTranslate="prototypeApp.purchasePlan.home.createOrEditLabel">Create or edit a Purchase Plan</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!purchasePlan.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="purchasePlan.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.purchasePlan.fiscalYear" for="field_fiscalYear">Fiscal Year</label>
+                    <input type="text" class="form-control" name="fiscalYear" id="field_fiscalYear"
+                        [(ngModel)]="purchasePlan.fiscalYear" required/>
+                    <div [hidden]="!(editForm.controls.fiscalYear?.dirty && editForm.controls.fiscalYear?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fiscalYear?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="prototypeApp.purchasePlan.planType" for="field_planType">Plan Type</label>
+                    <select class="form-control" name="planType" [(ngModel)]="purchasePlan.planType" id="field_planType"  required>
+                        <option value="ANNUAL">{{'prototypeApp.PlanType.ANNUAL' | translate}}</option>
+                        <option value="ENUMERATION">{{'prototypeApp.PlanType.ENUMERATION' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.planType?.dirty && editForm.controls.planType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.planType?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

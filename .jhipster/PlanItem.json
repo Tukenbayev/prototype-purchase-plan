@@ -1,0 +1,82 @@
+{
+    "name": "PlanItem",
+    "fields": [
+        {
+            "fieldName": "itemType",
+            "fieldType": "PurchasedItemType",
+            "fieldValues": "PRODUCT,WORK,SERVICE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "rowNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "itemName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "purchaseMethod",
+            "fieldType": "PurchaseMethod",
+            "fieldValues": "OPEN_TENDER,OPEN_TENDER_FOR_FALL,REQUEST_FOR_PRICE_OFFERS,REQUEST_FOR_PRICE_OFFERS_FOR_FALL,FROM_ONE_SOURCE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantityOrVolume",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unitPrice",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "priceWithoutVAT",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "deliveryAddress",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "deliveryMonth",
+            "fieldType": "DeliveryMonth",
+            "fieldValues": "JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "purchasePlan",
+            "otherEntityName": "purchasePlan",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181221075405",
+    "entityTableName": "plan_item",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

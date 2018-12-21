@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="purchasePlan">
+            <h2><span jhiTranslate="prototypeApp.purchasePlan.detail.title">Purchase Plan</span> {{purchasePlan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="prototypeApp.purchasePlan.fiscalYear">Fiscal Year</span></dt>
+                <dd>
+                    <span>{{purchasePlan.fiscalYear}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.purchasePlan.planType">Plan Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'prototypeApp.PlanType.' + purchasePlan.planType}}">{{purchasePlan.planType}}</span>
+                </dd>
+                <dt><span jhiTranslate="prototypeApp.purchasePlan.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'prototypeApp.PurchasePlanStatus.' + purchasePlan.status}}">{{purchasePlan.status}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plan-item', 'new', purchasePlan.id]"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'plus'"></fa-icon>&nbsp;Добавить пункт плана
+            </button>
+        </div>
+    </div>
+</div>

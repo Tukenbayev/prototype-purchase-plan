@@ -1,0 +1,42 @@
+{
+    "name": "PurchasePlan",
+    "fields": [
+        {
+            "fieldName": "fiscalYear",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "planType",
+            "fieldType": "PlanType",
+            "fieldValues": "ANNUAL,ENUMERATION",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "PurchasePlanStatus",
+            "fieldValues": "DRAFT,APPROVED"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "planItems",
+            "otherEntityName": "planItem",
+            "otherEntityRelationshipName": "purchasePlan"
+        }
+    ],
+    "changelogDate": "20181221075404",
+    "entityTableName": "purchase_plan",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -38,6 +38,9 @@ public class CacheConfiguration {
             cm.createCache(kz.sapasoft.prototype.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(kz.sapasoft.prototype.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(kz.sapasoft.prototype.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(kz.sapasoft.prototype.domain.PurchasePlan.class.getName(), jcacheConfiguration);
+            cm.createCache(kz.sapasoft.prototype.domain.PurchasePlan.class.getName() + ".planItems", jcacheConfiguration);
+            cm.createCache(kz.sapasoft.prototype.domain.PlanItem.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

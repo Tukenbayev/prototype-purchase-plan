@@ -1,0 +1,9 @@
+{
+    "prototypeApp": {
+        "PurchasePlanStatus": {
+            "null": "",
+            "DRAFT": "Черновик",
+            "APPROVED": "Утвержден"
+        }
+    }
+}

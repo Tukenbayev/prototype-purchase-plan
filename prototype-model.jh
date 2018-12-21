@@ -1,0 +1,44 @@
+enum PlanType {
+    ANNUAL, ENUMERATION
+}
+
+enum PurchasePlanStatus {
+    DRAFT, APPROVED
+}
+
+entity PurchasePlan {
+    fiscalYear String required,
+    planType PlanType required,
+    status PurchasePlanStatus
+}
+
+enum PurchasedItemType {
+    PRODUCT, WORK, SERVICE
+}
+
+enum PurchaseMethod {
+    OPEN_TENDER, OPEN_TENDER_FOR_FALL, REQUEST_FOR_PRICE_OFFERS, REQUEST_FOR_PRICE_OFFERS_FOR_FALL, FROM_ONE_SOURCE
+}
+
+enum DeliveryMonth {
+    JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+}
+
+entity PlanItem {
+    itemType PurchasedItemType required,
+    rowNumber Long,
+    itemName String required,
+    purchaseMethod PurchaseMethod required,
+    quantityOrVolume Float required,
+    unitPrice Float required,
+    priceWithoutVAT Float,
+    deliveryAddress String required,
+    deliveryMonth DeliveryMonth required
+}
+
+relationship OneToMany {
+	PurchasePlan{planItems} to PlanItem
+}
+
+paginate PurchasePlan, PlanItem with pagination
+service all with serviceImpl

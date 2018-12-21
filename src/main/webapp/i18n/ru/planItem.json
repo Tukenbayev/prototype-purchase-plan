@@ -1,0 +1,30 @@
+{
+    "prototypeApp": {
+        "planItem": {
+            "home": {
+                "title": "Пунты плана",
+                "createLabel": "Создать пункт плана",
+                "createOrEditLabel": "Создать или отредактировать пункт плана"
+            },
+            "created": "Новый пункт создан с идентификатором {{ param }}",
+            "updated": "Пункт обновлен с идентификатором {{ param }}",
+            "deleted": "Пункт удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить пункт плана {{ id }}?"
+            },
+            "detail": {
+                "title": "Пункт плана"
+            },
+            "itemType": "Вид предмета закупки",
+            "rowNumber": "Номер строки",
+            "itemName": "Наименование ТРУ",
+            "purchaseMethod": "Способ закупки",
+            "quantityOrVolume": "Количество, объем",
+            "unitPrice": "Цена за единицу ",
+            "priceWithoutVAT": "Сумма без НДС",
+            "deliveryAddress": "Место поставки",
+            "deliveryMonth": "Месяц поставки",
+            "purchasePlan": "План закупки"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "prototypeApp": {
+        "PurchaseMethod": {
+            "null": "",
+            "OPEN_TENDER": "Открытый тендер",
+            "OPEN_TENDER_FOR_FALL": "Открытый тендер на понижение",
+            "REQUEST_FOR_PRICE_OFFERS": "Запрос ценовых предложений",
+            "REQUEST_FOR_PRICE_OFFERS_FOR_FALL": "Запрос ценовых предложений на понижение",
+            "FROM_ONE_SOURCE": "Из одного источника"
+        }
+    }
+}

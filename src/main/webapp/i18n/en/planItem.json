@@ -1,0 +1,30 @@
+{
+    "prototypeApp": {
+        "planItem": {
+            "home": {
+                "title": "Plan Items",
+                "createLabel": "Create a new Plan Item",
+                "createOrEditLabel": "Create or edit a Plan Item"
+            },
+            "created": "A new Plan Item is created with identifier {{ param }}",
+            "updated": "A Plan Item is updated with identifier {{ param }}",
+            "deleted": "A Plan Item is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Plan Item {{ id }}?"
+            },
+            "detail": {
+                "title": "Plan Item"
+            },
+            "itemType": "Item Type",
+            "rowNumber": "Row Number",
+            "itemName": "Item Name",
+            "purchaseMethod": "Purchase Method",
+            "quantityOrVolume": "Quantity Or Volume",
+            "unitPrice": "Unit Price",
+            "priceWithoutVAT": "Price Without VAT",
+            "deliveryAddress": "Delivery Address",
+            "deliveryMonth": "Delivery Month",
+            "purchasePlan": "Purchase Plan"
+        }
+    }
+}

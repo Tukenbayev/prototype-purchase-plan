@@ -1,0 +1,12 @@
+{
+    "prototypeApp": {
+        "PurchaseMethod": {
+            "null": "",
+            "OPEN_TENDER": "OPEN_TENDER",
+            "OPEN_TENDER_FOR_FALL": "OPEN_TENDER_FOR_FALL",
+            "REQUEST_FOR_PRICE_OFFERS": "REQUEST_FOR_PRICE_OFFERS",
+            "REQUEST_FOR_PRICE_OFFERS_FOR_FALL": "REQUEST_FOR_PRICE_OFFERS_FOR_FALL",
+            "FROM_ONE_SOURCE": "FROM_ONE_SOURCE"
+        }
+    }
+}

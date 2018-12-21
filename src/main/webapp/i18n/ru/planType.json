@@ -1,0 +1,9 @@
+{
+    "prototypeApp": {
+        "PlanType": {
+            "null": "",
+            "ANNUAL": "годовой",
+            "ENUMERATION": "перечень"
+        }
+    }
+}
