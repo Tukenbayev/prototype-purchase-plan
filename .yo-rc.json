@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "kz.sapasoft.prototype",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "prototype",
+    "packageName": "kz.sapasoft.prototype",
+    "packageFolder": "kz/sapasoft/prototype",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YWRmNzA0YzdmMTBjMmQxMGZlZGQ0NGZkZDVkYTA5ZTVkMDk2MDZiNTZkZmE3NWM4NmNmYzg4YWJiNmE1MGRkNjM0YTY2NjllYmU3NmQzYWQ1NGFlNGVhZjg1YTc3ZWU2NDBhODU4MWM2NzQ1YTcyNDc2NjFkMDA5M2MxY2Q2NzU=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "ru"
+    ]
+  }
+}
