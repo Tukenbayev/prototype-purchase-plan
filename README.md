@@ -1,6 +1,17 @@
 # prototype
 This application was generated using JHipster 5.7.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.7.0](https://www.jhipster.tech/documentation-archive/v5.7.0).
 
+PostgreSQL:
+    
+    create database 'prototype'
+    create user 'developer' with password '123456'
+    grant all privileges to db
+    
+File Uploads: in application-dev.yml change path to desired one
+    
+    file:
+        upload-dir: /home/khamit/uploads 
+
 ## Development
 
 To start your application in the dev profile, simply run:

@@ -32,13 +32,11 @@
                         <button type="submit"
                                 [routerLink]="['/plan-item']" [queryParams]="{pid: purchasePlan.id}"
                                 class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/purchase-plan', purchasePlan.id, 'edit']"
                                 class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
@@ -46,8 +44,14 @@
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                        <button class="btn btn-success btn-sm"
+                                type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'purchase-plan/'+ purchasePlan.id + '/approve'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge">
+                            Утвердить
                         </button>
                     </div>
                 </td>

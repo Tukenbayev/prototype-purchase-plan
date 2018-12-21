@@ -2,7 +2,7 @@
     "prototypeApp": {
         "planItem": {
             "home": {
-                "title": "Пунты плана",
+                "title": "Пункты плана",
                 "createLabel": "Создать пункт плана",
                 "createOrEditLabel": "Создать или отредактировать пункт плана"
             },

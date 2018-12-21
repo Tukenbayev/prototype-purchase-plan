@@ -32,7 +32,7 @@ public class FileResource {
         String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-            .path("/downloadFile/")
+            .path("/api/downloadFile/")
             .path(fileName)
             .toUriString();
 
