@@ -11,6 +11,10 @@ import {
     purchasePlanRoute,
     purchasePlanPopupRoute
 } from './';
+import {
+    PurchasePlanApprovePopupComponent,
+    PurchasePlanApproveComponent
+} from 'app/entities/purchase-plan/purchase-plan-approve.component';
 
 const ENTITY_STATES = [...purchasePlanRoute, ...purchasePlanPopupRoute];
 
@@ -21,13 +25,17 @@ const ENTITY_STATES = [...purchasePlanRoute, ...purchasePlanPopupRoute];
         PurchasePlanDetailComponent,
         PurchasePlanUpdateComponent,
         PurchasePlanDeleteDialogComponent,
-        PurchasePlanDeletePopupComponent
+        PurchasePlanDeletePopupComponent,
+        PurchasePlanApprovePopupComponent,
+        PurchasePlanApproveComponent
     ],
     entryComponents: [
         PurchasePlanComponent,
         PurchasePlanUpdateComponent,
         PurchasePlanDeleteDialogComponent,
-        PurchasePlanDeletePopupComponent
+        PurchasePlanDeletePopupComponent,
+        PurchasePlanApproveComponent,
+        PurchasePlanApprovePopupComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

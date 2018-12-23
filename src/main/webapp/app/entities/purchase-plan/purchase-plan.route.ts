@@ -12,6 +12,7 @@ import { PurchasePlanDetailComponent } from './purchase-plan-detail.component';
 import { PurchasePlanUpdateComponent } from './purchase-plan-update.component';
 import { PurchasePlanDeletePopupComponent } from './purchase-plan-delete-dialog.component';
 import { IPurchasePlan } from 'app/shared/model/purchase-plan.model';
+import { PurchasePlanApprovePopupComponent } from 'app/entities/purchase-plan/purchase-plan-approve.component';
 
 @Injectable({ providedIn: 'root' })
 export class PurchasePlanResolve implements Resolve<IPurchasePlan> {
@@ -85,6 +86,19 @@ export const purchasePlanPopupRoute: Routes = [
     {
         path: 'purchase-plan/:id/delete',
         component: PurchasePlanDeletePopupComponent,
+        resolve: {
+            purchasePlan: PurchasePlanResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'prototypeApp.purchasePlan.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'purchase-plan/:id/approve',
+        component: PurchasePlanApprovePopupComponent,
         resolve: {
             purchasePlan: PurchasePlanResolve
         },

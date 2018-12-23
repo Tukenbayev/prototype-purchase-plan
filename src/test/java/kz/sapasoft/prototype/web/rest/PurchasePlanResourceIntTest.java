@@ -76,7 +76,7 @@ public class PurchasePlanResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PurchasePlanResource purchasePlanResource = new PurchasePlanResource(purchasePlanService);
+        final PurchasePlanResource purchasePlanResource = new PurchasePlanResource(purchasePlanService, null);
         this.restPurchasePlanMockMvc = MockMvcBuilders.standaloneSetup(purchasePlanResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -193,7 +193,7 @@ public class PurchasePlanResourceIntTest {
             .andExpect(jsonPath("$.[*].planType").value(hasItem(DEFAULT_PLAN_TYPE.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getPurchasePlan() throws Exception {

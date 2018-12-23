@@ -1,5 +1,6 @@
 package kz.sapasoft.prototype.service;
 
+import kz.sapasoft.prototype.domain.ApprovementDTO;
 import kz.sapasoft.prototype.domain.PurchasePlan;
 
 import org.springframework.data.domain.Page;
@@ -43,4 +44,6 @@ public interface PurchasePlanService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    void approvePlan(ApprovementDTO approvementDTO);
 }

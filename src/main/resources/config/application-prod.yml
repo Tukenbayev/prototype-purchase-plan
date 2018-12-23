@@ -52,6 +52,14 @@ spring:
         password:
     thymeleaf:
         cache: true
+    servlet:
+            multipart:
+              enabled: true
+              file-size-threshold: 2KB
+              max-file-size: 200MB
+              max-request-size: 215MB
+file:
+    upload-dir: /home/khamit/uploads
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:

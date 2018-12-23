@@ -1,20 +1,17 @@
 package kz.sapasoft.prototype.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import kz.sapasoft.prototype.domain.enumeration.PlanType;
+import kz.sapasoft.prototype.domain.enumeration.PurchasePlanStatus;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.Objects;
-
-import kz.sapasoft.prototype.domain.enumeration.PlanType;
-
-import kz.sapasoft.prototype.domain.enumeration.PurchasePlanStatus;
+import java.util.Set;
 
 /**
  * A PurchasePlan.
@@ -47,6 +44,10 @@ public class PurchasePlan implements Serializable {
     @OneToMany(mappedBy = "purchasePlan")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PlanItem> planItems = new HashSet<>();
+
+    @OneToMany(mappedBy = "purchasePlan")
+    private List<ApprovementFile> approvementFiles;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -119,6 +120,15 @@ public class PurchasePlan implements Serializable {
     public void setPlanItems(Set<PlanItem> planItems) {
         this.planItems = planItems;
     }
+
+    public List<ApprovementFile> getApprovementFiles() {
+        return approvementFiles;
+    }
+
+    public void setApprovementFiles(List<ApprovementFile> approvementFiles) {
+        this.approvementFiles = approvementFiles;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

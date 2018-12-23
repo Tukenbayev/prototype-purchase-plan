@@ -54,6 +54,7 @@ export class PlanItemComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        console.log(this.purchasePlan);
         this.planItemService
             .filter(this.condition)
             .subscribe(
@@ -108,6 +109,10 @@ export class PlanItemComponent implements OnInit, OnDestroy {
 
     previousState() {
         window.history.back();
+    }
+
+    downloadFile(fileName: string) {
+        this.planService.downloadFile(fileName);
     }
 
     private paginatePlanItems(data: IPlanItem[], headers: HttpHeaders) {

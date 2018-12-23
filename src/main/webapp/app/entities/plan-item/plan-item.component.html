@@ -17,6 +17,10 @@
                     <dd>
                         <span jhiTranslate="{{'prototypeApp.PurchasePlanStatus.' + purchasePlan.status}}">{{purchasePlan.status}}</span>
                     </dd>
+                    <dt><span>Прикрепленные файлы</span></dt>
+                    <dd *ngFor="let file of purchasePlan.approvementFiles">
+                        <a (click)="downloadFile(file.fileName)">{{file.fileName}}</a>
+                    </dd>
                 </dl>
             </div>
         </div>

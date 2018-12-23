@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h4 class="modal-title">Утверждение плана закупок {{purchasePlan.id}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            (click)="clear()">&times;</button>
+</div>
+<div class="modal-body">
+    <dl class="row-md jh-entity-details">
+        <span jhiTranslate="prototypeApp.purchasePlan.fiscalYear">Fiscal Year</span>:
+            <span>{{purchasePlan.fiscalYear}}</span><br>
+        <span jhiTranslate="prototypeApp.purchasePlan.planType">Plan Type</span>:
+            <span jhiTranslate="{{'prototypeApp.PlanType.' + purchasePlan.planType}}">{{purchasePlan.planType}}</span><br>
+        <span jhiTranslate="prototypeApp.purchasePlan.status">Status</span>:
+            <span jhiTranslate="{{'prototypeApp.PurchasePlanStatus.' + purchasePlan.status}}">{{purchasePlan.status}}</span><br>
+        <input id="fileUploadInput" type="file" name="file" class="file-input" accept="application/pdf" multiple />
+    </dl>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+        <span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>
+    <button id="jhi-confirm-delete-purchasePlan" class="btn btn-primary" (click)="approve()">
+        Утвердить
+    </button>
+</div>

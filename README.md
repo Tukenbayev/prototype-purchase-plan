@@ -7,7 +7,7 @@ PostgreSQL:
     create user 'developer' with password '123456'
     grant all privileges to db
     
-File Uploads: in application-dev.yml change path to desired one
+File Uploads: in application-dev.yml or application-prod.yml change path to desired one
     
     file:
         upload-dir: /home/khamit/uploads 

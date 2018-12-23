@@ -16,6 +16,7 @@ export interface IPurchasePlan {
     planType?: PlanType;
     status?: PurchasePlanStatus;
     planItems?: IPlanItem[];
+    approvementFiles?: any;
 }
 
 export class PurchasePlan implements IPurchasePlan {
@@ -24,6 +25,7 @@ export class PurchasePlan implements IPurchasePlan {
         public fiscalYear?: string,
         public planType?: PlanType,
         public status?: PurchasePlanStatus,
-        public planItems?: IPlanItem[]
+        public planItems?: IPlanItem[],
+        public approvementFiles?: any
     ) {}
 }

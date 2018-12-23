@@ -1,7 +1,9 @@
 package kz.sapasoft.prototype.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import kz.sapasoft.prototype.domain.ApprovementDTO;
 import kz.sapasoft.prototype.domain.PurchasePlan;
+import kz.sapasoft.prototype.repository.ApprovementFileRepository;
 import kz.sapasoft.prototype.service.PurchasePlanService;
 import kz.sapasoft.prototype.web.rest.errors.BadRequestAlertException;
 import kz.sapasoft.prototype.web.rest.util.HeaderUtil;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -35,9 +38,12 @@ public class PurchasePlanResource {
     private static final String ENTITY_NAME = "purchasePlan";
 
     private final PurchasePlanService purchasePlanService;
+    private final ApprovementFileRepository fileRepository;
 
-    public PurchasePlanResource(PurchasePlanService purchasePlanService) {
+    public PurchasePlanResource(PurchasePlanService purchasePlanService,
+                                ApprovementFileRepository fileRepository) {
         this.purchasePlanService = purchasePlanService;
+        this.fileRepository = fileRepository;
     }
 
     /**
@@ -58,6 +64,17 @@ public class PurchasePlanResource {
         return ResponseEntity.created(new URI("/api/purchase-plans/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    @PostMapping("/purchase-plans/approve")
+    @Timed
+    public ResponseEntity<Void> approvePurchasePlan(@RequestParam("files")MultipartFile[] files, @RequestParam("planId") String planId) throws URISyntaxException {
+        PurchasePlan plan = purchasePlanService.findOne(Long.valueOf(planId)).get();
+        ApprovementDTO approvementDTO = new ApprovementDTO();
+        approvementDTO.files = files;
+        approvementDTO.purchasePlan = plan;
+        purchasePlanService.approvePlan(approvementDTO);
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -108,6 +125,7 @@ public class PurchasePlanResource {
     public ResponseEntity<PurchasePlan> getPurchasePlan(@PathVariable Long id) {
         log.debug("REST request to get PurchasePlan : {}", id);
         Optional<PurchasePlan> purchasePlan = purchasePlanService.findOne(id);
+        purchasePlan.ifPresent(plan -> plan.setApprovementFiles(fileRepository.findAllByPurchasePlanId(plan.getId())));
         return ResponseUtil.wrapOrNotFound(purchasePlan);
     }
 
